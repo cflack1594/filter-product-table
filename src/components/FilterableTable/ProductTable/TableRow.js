@@ -3,16 +3,15 @@ import PropTypes from "prop-types";
 
 export class TableRow extends React.Component {
   static propTypes = {
-    name: PropTypes.string,
-    price: PropTypes.string,
+    product: PropTypes.object,
   };
 
   render() {
     return (
       <Fragment>
-        <tr>
-          <td>{this.props.name}</td>
-          <td>{this.props.price}</td>
+        <tr key={this.props.product.name}>
+          <td>{this.props.product.name}</td>
+          <td>{this.props.product.price}</td>
         </tr>
       </Fragment>
     );

@@ -14,9 +14,11 @@ export class ProductTable extends React.Component {
 
     this.props.products.forEach((product) => {
       if (product.category !== checkCategory)
-        table.push(<TableHeader category={product.category} />);
+        table.push(
+          <TableHeader key={product.category} category={product.category} />
+        );
 
-      table.push(<TableRow name={product.name} price={product.price} />);
+      table.push(<TableRow key={product.name} product={product} />);
 
       checkCategory = product.category;
     });
