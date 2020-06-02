@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 export class TableRow extends React.Component {
@@ -8,12 +8,10 @@ export class TableRow extends React.Component {
 
   render() {
     return (
-      <Fragment>
-        <tr key={this.props.product.name}>
-          <td>{this.props.product.name}</td>
-          <td>{this.props.product.price}</td>
-        </tr>
-      </Fragment>
+      <tr key={this.props.product.name}>
+        <td>{this.props.product.name}</td>
+        <td>{this.props.product.price}</td>
+      </tr>
     );
   }
 }
