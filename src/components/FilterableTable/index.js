@@ -1,14 +1,19 @@
 import { ProductTable } from "./ProductTable";
 import { SearchBar } from "./SearchBar";
-import React from "react";
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 
 export class FilterableTable extends React.Component {
+  static propTypes = {
+    products: PropTypes.array,
+  };
+
   render() {
     return (
-      <div>
+      <Fragment>
         <SearchBar />
-        <ProductTable />
-      </div>
+        <ProductTable products={this.props.products} />
+      </Fragment>
     );
   }
 }
