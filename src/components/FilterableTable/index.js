@@ -11,7 +11,7 @@ export class FilterableTable extends React.Component {
   render() {
     return (
       <Fragment>
-        <SearchBar />
+        <SearchBar products={this.props.products} />
         <ProductTable products={this.props.products} />
       </Fragment>
     );

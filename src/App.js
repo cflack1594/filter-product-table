@@ -41,6 +41,10 @@ export class App extends React.Component {
     },
   ];
 
+  state = {
+    isChecked: false,
+  };
+
   render() {
     return (
       <div className="App">
