@@ -1,7 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 export class TableHeader extends React.Component {
   render() {
-    return;
+    return (
+      <Fragment>
+        <th>I AM A ROBOT</th>
+      </Fragment>
+    );
   }
 }

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 export class TableRow extends React.Component {
   render() {
-    return;
+    return (
+      <Fragment>
+        <tr>BEEP</tr>
+        <tr>BOOP</tr>
+      </Fragment>
+    );
   }
 }

@@ -6,8 +6,8 @@ export class FilterableTable extends React.Component {
   render() {
     return (
       <div>
-        {SearchBar}
-        {ProductTable}
+        <SearchBar />
+        <ProductTable />
       </div>
     );
   }
