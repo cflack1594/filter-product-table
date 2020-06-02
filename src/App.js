@@ -45,10 +45,23 @@ export class App extends React.Component {
     isChecked: false,
   };
 
+  eventHandlers = {
+    handleChange() {
+      console.log("typing");
+    },
+
+    handleClick() {
+      console.log("clicked");
+    },
+  };
+
   render() {
     return (
       <div className="App">
-        <FilterableTable products={this.products} />
+        <FilterableTable
+          products={this.products}
+          eventHandlers={this.eventHandlers}
+        />
       </div>
     );
   }
