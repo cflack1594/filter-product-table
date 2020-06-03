@@ -27,7 +27,7 @@ export class SearchBar extends React.Component {
         />
         <div>
           {""}
-          <label htmlFor="filter">filter</label>
+          <label htmlFor="filter">Filter In Stock</label>
           <input
             type="checkbox"
             id="filter"

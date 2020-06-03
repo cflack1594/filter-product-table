@@ -3,7 +3,7 @@ import { SearchBar } from "./SearchBar";
 import React, { Fragment } from "react";
 export class FilterableTable extends React.Component {
   state = {
-    searchTerm: " ",
+    searchTerm: "",
     isChecked: false,
     products: [
       {
@@ -47,12 +47,10 @@ export class FilterableTable extends React.Component {
 
   searchForItem = (searchInput) => {
     this.setState({ searchTerm: searchInput });
-    console.log("typing", this.state.searchTerm);
   };
 
   filterInStock = () => {
     this.setState({ isChecked: !this.state.isChecked });
-    console.log("clicked", this.state.isChecked);
   };
 
   render() {
@@ -63,7 +61,11 @@ export class FilterableTable extends React.Component {
           filterInStock={this.filterInStock}
           searchForItem={this.searchForItem}
         />
-        <ProductTable products={this.state.products} />
+        <ProductTable
+          products={this.state.products}
+          checkInStock={this.state.isChecked}
+          searchItem={this.state.searchTerm}
+        />
       </Fragment>
     );
   }
