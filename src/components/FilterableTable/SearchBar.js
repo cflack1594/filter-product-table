@@ -3,7 +3,16 @@ import PropTypes from "prop-types";
 export class SearchBar extends React.Component {
   static propTypes = {
     products: PropTypes.array,
-    eventHandlers: PropTypes.object,
+    searchForItem: PropTypes.func.isRequired,
+    filterInStock: PropTypes.func.isRequired,
+  };
+
+  handleChange = () => {
+    this.props.searchForItem(document.getElementById("search").value);
+  };
+
+  handleClick = () => {
+    this.props.filterInStock();
   };
 
   render() {
@@ -14,7 +23,7 @@ export class SearchBar extends React.Component {
           type="text"
           id="search"
           name="search"
-          onChange={this.props.eventHandlers.handleChange}
+          onChange={this.handleChange}
         />
         <div>
           {""}
@@ -23,7 +32,7 @@ export class SearchBar extends React.Component {
             type="checkbox"
             id="filter"
             name="filter"
-            onClick={this.props.eventHandlers.handleClick}
+            onClick={this.handleClick}
           />
         </div>
       </form>
