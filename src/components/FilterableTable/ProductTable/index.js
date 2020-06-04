@@ -6,25 +6,16 @@ import PropTypes from "prop-types";
 export class ProductTable extends React.Component {
   static propTypes = {
     products: PropTypes.array,
-    checkInStock: PropTypes.bool,
-    searchItem: PropTypes.string,
+    filterCBS: PropTypes.object,
   };
 
   render() {
     let checkCategory = null;
 
     const table = this.props.products
-      .filter((product) => {
-        if (this.props.checkInStock) return product.stocked;
-        else return true;
-      })
-      .filter((product) => {
-        if (this.props.searchItem)
-          return product.name
-            .toLowerCase()
-            .includes(this.props.searchItem.toLowerCase());
-        else return true;
-      })
+      .filter((product) => this.props.filterCBS.checkIfInStock(product))
+      .filter((product) => this.props.filterCBS.searchItems(product))
+      .filter((product) => this.props.filterCBS.searchPrices(product))
       .map((product) => {
         let ret = [];
         if (product.category !== checkCategory)
