@@ -19,7 +19,7 @@ export class CheckBox extends React.Component {
           type="checkbox"
           id="filter"
           name="filter"
-          onClick={this.handleClick}
+          onChange={this.handleClick}
         />
       </div>
     );

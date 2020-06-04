@@ -28,12 +28,36 @@ export class FilterableTable extends React.Component {
     searchPrices: (product) => {
       if (this.state.searchPrice)
         return (
-          Number.parseFloat(removeChar(product.price, "$")) >=
+          Number.parseFloat(removeChar(product.price, "$")) <=
           Number.parseFloat(this.state.searchPrice)
         );
       else return true;
     },
   };
+
+  inputData = [
+    {
+      event: "onChange",
+      handler: "handleChange",
+      sendTo: "searchForItem",
+      type: "text",
+      name: "searchItem",
+    },
+    {
+      event: "onChange",
+      handler: "handleChange",
+      sendTo: "searchForPrice",
+      type: "text",
+      name: "searchPrice",
+    },
+    {
+      event: "onClick",
+      handler: "handleClick",
+      sendTo: "filterInStock",
+      type: "checkBox",
+      name: "filterStock",
+    },
+  ];
 
   searchForItem = (searchInput) => {
     this.setState({ searchTerm: searchInput });
@@ -64,6 +88,7 @@ export class FilterableTable extends React.Component {
     return (
       <Fragment>
         <Filters
+          inputData={this.inputData}
           filterInStock={this.filterInStock}
           searchForItem={this.searchForItem}
           searchForPrice={this.searchForPrice}

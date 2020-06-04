@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 export class SearchBar extends React.Component {
   static propTypes = {
     searchForItem: PropTypes.func.isRequired,
+    searchForPrice: PropTypes.func,
   };
 
   handleChange = () => {
