@@ -13,9 +13,15 @@ export class ProductTable extends React.Component {
     let checkCategory = null;
 
     const table = this.props.products
-      .filter((product) => this.props.filterCBS.checkIfInStock(product))
-      .filter((product) => this.props.filterCBS.searchItems(product))
-      .filter((product) => this.props.filterCBS.searchPrices(product))
+      .filter((product) => {
+        let filtered = true;
+
+        Object.keys(this.props.filterCBS).forEach((CBName) => {
+          if (filtered) filtered = this.props.filterCBS[CBName](product);
+        });
+
+        return filtered;
+      })
       .map((product) => {
         let ret = [];
         if (product.category !== checkCategory)
