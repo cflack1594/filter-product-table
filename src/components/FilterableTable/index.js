@@ -13,47 +13,35 @@ export class FilterableTable extends React.Component {
 
   filterCBS = {
     checkIfInStock: (product) => {
-      if (this.state.isChecked) return product.stocked;
-      else return true;
+      return this.state.isChecked ? product.stocked : true;
     },
 
     searchItems: (product) => {
-      if (this.state.searchTerm)
-        return product.name
-          .toLowerCase()
-          .includes(this.state.searchTerm.toLowerCase());
-      else return true;
+      return this.state.searchTerm
+        ? product.name
+            .toLowerCase()
+            .includes(this.state.searchTerm.toLowerCase())
+        : true;
     },
 
     searchPrices: (product) => {
-      if (this.state.searchPrice)
-        return (
-          Number.parseFloat(removeChar(product.price, "$")) <=
-          Number.parseFloat(this.state.searchPrice)
-        );
-      else return true;
+      return this.state.searchPrice
+        ? Number.parseFloat(removeChar(product.price, "$")) <=
+            Number.parseFloat(this.state.searchPrice)
+        : true;
     },
   };
 
   inputData = [
     {
-      event: "onChange",
-      handler: "handleChange",
-      sendTo: "searchForItem",
       type: "text",
       name: "searchItem",
     },
     {
-      event: "onChange",
-      handler: "handleChange",
-      sendTo: "searchForPrice",
       type: "text",
       name: "searchPrice",
     },
     {
-      event: "onClick",
-      handler: "handleClick",
-      sendTo: "filterInStock",
       type: "checkBox",
       name: "filterStock",
     },

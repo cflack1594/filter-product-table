@@ -3,32 +3,43 @@ import PropTypes from "prop-types";
 
 export class InputFilter extends React.Component {
   static propTypes = {
+    filterInStock: PropTypes.func,
+    searchForItem: PropTypes.func,
+    searchForPrice: PropTypes.func,
     inputData: PropTypes.array,
   };
 
-  handleClick = () => {
-    this.props.inputData.sendTo();
-  };
-
-  handleChange = () => {
-    this.props.inputData.sendTo(EventTarget.value);
+  handleEvents = (name) => {
+    switch (name) {
+      case "searchItem":
+        this.props.searchForItem(document.getElementById("searchItem").value);
+        break;
+      case "searchPrice":
+        this.props.searchForPrice(document.getElementById(name).value);
+        break;
+      case "filterStock":
+        this.props.filterInStock();
+        break;
+      default:
+        break;
+    }
   };
 
   render() {
-    const inputs = this.props.inputData.map((thing) => {
+    const inputs = this.props.inputData.map((targetInput) => {
       return (
-        <div key={thing.name}>
-          <label htmlFor={thing.name}>{thing.name}</label>
+        <div key={targetInput.name}>
+          <label htmlFor={targetInput.name}>{targetInput.name}</label>
           <input
-            type={thing.type}
-            id={thing.name}
-            name={thing.name}
-            event={thing.handler}
+            type={targetInput.type}
+            id={targetInput.name}
+            name={targetInput.name}
+            onChange={() => this.handleEvents(targetInput.name)}
           />
         </div>
       );
     });
 
-    return <div>{inputs}</div>;
+    return inputs;
   }
 }

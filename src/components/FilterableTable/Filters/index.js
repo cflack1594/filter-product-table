@@ -15,9 +15,14 @@ export class Filters extends React.Component {
 
   render() {
     return (
-      <div>
-        <InputFilter inputData={this.props.inputData} />
-      </div>
+      <form>
+        <InputFilter
+          inputData={this.props.inputData}
+          searchForItem={this.props.searchForItem}
+          searchForPrice={this.props.searchForPrice}
+          filterInStock={this.props.filterInStock}
+        />
+      </form>
     );
   }
 }
