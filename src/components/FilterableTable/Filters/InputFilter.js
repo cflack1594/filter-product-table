@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export class InputFilter extends React.Component {
   static propTypes = {
-    filterInStock: PropTypes.func,
+    filterInStockOnly: PropTypes.func,
     searchForItem: PropTypes.func,
     searchForPrice: PropTypes.func,
     inputData: PropTypes.array,
@@ -18,7 +18,7 @@ export class InputFilter extends React.Component {
         this.props.searchForPrice(document.getElementById(name).value);
         break;
       case "filterStock":
-        this.props.filterInStock();
+        this.props.filterInStockOnly();
         break;
       default:
         break;

@@ -5,26 +5,26 @@ import * as API from "../../API";
 import { removeChar } from "../../utils";
 export class FilterableTable extends React.Component {
   state = {
-    searchTerm: "",
+    searchItem: "",
     searchPrice: "",
-    isChecked: false,
+    inStockOnly: false,
     products: [],
   };
 
   filterCBS = {
-    checkIfInStock: (product) => {
-      return this.state.isChecked ? product.stocked : true;
+    inStockOnly: (product) => {
+      return this.state.inStockOnly ? product.stocked : true;
     },
 
-    searchItems: (product) => {
-      return this.state.searchTerm
+    searchItem: (product) => {
+      return this.state.searchItem
         ? product.name
             .toLowerCase()
-            .includes(this.state.searchTerm.toLowerCase())
+            .includes(this.state.searchItem.toLowerCase())
         : true;
     },
 
-    searchPrices: (product) => {
+    searchPrice: (product) => {
       return this.state.searchPrice
         ? Number.parseFloat(removeChar(product.price, "$")) <=
             Number.parseFloat(this.state.searchPrice)
@@ -48,43 +48,55 @@ export class FilterableTable extends React.Component {
   ];
 
   searchForItem = (searchInput) => {
-    this.setState({ searchTerm: searchInput });
+    this.setState({ searchItem: searchInput });
   };
 
   searchForPrice = (searchInput) => {
     this.setState({ searchPrice: searchInput });
   };
 
-  filterInStock = () => {
-    this.setState({ isChecked: !this.state.isChecked });
+  filterInStockOnly = () => {
+    this.setState({ inStockOnly: !this.state.inStockOnly });
   };
 
-  componentDidMount() {
-    this.getProducts();
-  }
-
-  getProducts = async () => {
+  async componentDidMount() {
     try {
-      const products = await API.get();
-      this.setState({ products: products });
+      this.setState({ products: await API.get() });
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
   render() {
+    let filteredProducts;
+
+    const activeFilters = Object.keys(this.state)
+      .reduce((acc, name) => {
+        if (name === "products") return acc;
+        if (this.state[name]) acc.push(name);
+        return acc;
+      }, [])
+      .reduce((acc, name) => {
+        if (this.state[name]) acc.push(this.filterCBS[name]);
+        return acc;
+      }, []);
+
+    if (activeFilters.length) {
+      filteredProducts = activeFilters.reduce(
+        (acc, filterCB) => acc.filter((product) => filterCB(product)),
+        this.state.products
+      );
+    } else filteredProducts = this.state.products;
+
     return (
       <Fragment>
         <Filters
           inputData={this.inputData}
-          filterInStock={this.filterInStock}
+          filterInStockOnly={this.filterInStockOnly}
           searchForItem={this.searchForItem}
           searchForPrice={this.searchForPrice}
         />
-        <ProductTable
-          products={this.state.products}
-          filterCBS={this.filterCBS}
-        />
+        <ProductTable products={filteredProducts} />
       </Fragment>
     );
   }

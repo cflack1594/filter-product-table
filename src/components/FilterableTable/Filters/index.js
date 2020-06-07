@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 export class Filters extends React.Component {
   static propTypes = {
-    filterInStock: PropTypes.func,
+    filterInStockOnly: PropTypes.func,
     searchForItem: PropTypes.func,
     searchForPrice: PropTypes.func,
     inputData: PropTypes.array,
@@ -20,7 +20,7 @@ export class Filters extends React.Component {
           inputData={this.props.inputData}
           searchForItem={this.props.searchForItem}
           searchForPrice={this.props.searchForPrice}
-          filterInStock={this.props.filterInStock}
+          filterInStockOnly={this.props.filterInStockOnly}
         />
       </form>
     );
