@@ -43,12 +43,12 @@ export class FilterableTable extends React.Component {
     },
     {
       type: "checkBox",
-      name: "filterStock",
+      name: "inStockOnly",
     },
   ];
 
   searchOnChange = (searchInput, name) => {
-    if (name === "filterStock") {
+    if (name === "inStockOnly") {
       this.setState({ [name]: !this.state[name] });
     } else this.setState({ [name]: searchInput });
   };
