@@ -47,16 +47,10 @@ export class FilterableTable extends React.Component {
     },
   ];
 
-  searchForItem = (searchInput) => {
-    this.setState({ searchItem: searchInput });
-  };
-
-  searchForPrice = (searchInput) => {
-    this.setState({ searchPrice: searchInput });
-  };
-
-  filterInStockOnly = () => {
-    this.setState({ inStockOnly: !this.state.inStockOnly });
+  searchOnChange = (searchInput, name) => {
+    if (name === "filterStock") {
+      this.setState({ [name]: !this.state[name] });
+    } else this.setState({ [name]: searchInput });
   };
 
   async componentDidMount() {
@@ -92,9 +86,7 @@ export class FilterableTable extends React.Component {
       <Fragment>
         <Filters
           inputData={this.inputData}
-          filterInStockOnly={this.filterInStockOnly}
-          searchForItem={this.searchForItem}
-          searchForPrice={this.searchForPrice}
+          searchOnChange={this.searchOnChange}
         />
         <ProductTable products={filteredProducts} />
       </Fragment>
