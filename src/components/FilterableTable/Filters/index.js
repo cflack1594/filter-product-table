@@ -13,7 +13,7 @@ export class Filters extends React.Component {
       <form>
         <InputFilter
           inputData={this.props.inputData}
-          searchOnChange={this.searchOnChange}
+          searchOnChange={this.props.searchOnChange}
         />
       </form>
     );
