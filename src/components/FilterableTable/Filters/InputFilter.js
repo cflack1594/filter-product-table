@@ -8,7 +8,7 @@ export class InputFilter extends React.Component {
   };
 
   handleChange = (name) => {
-    console.log("beep");
+    console.log("beep", name);
     this.props.searchOnChange(document.getElementById(name).value, name);
   };
 
