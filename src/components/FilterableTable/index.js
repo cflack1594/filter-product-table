@@ -64,25 +64,17 @@ export class FilterableTable extends React.Component {
   }
 
   render() {
-    let filteredProducts;
-
     const activeFilters = Object.keys(this.state)
-      .reduce((acc, name) => {
-        if (name === "products") return acc;
-        if (this.state[name]) acc.push(name);
-        return acc;
-      }, [])
+      .filter((stateName) => Object.keys(this.filterCBS).includes(stateName))
       .reduce((acc, name) => {
         if (this.state[name]) acc.push(this.filterCBS[name]);
         return acc;
       }, []);
 
-    if (activeFilters.length) {
-      filteredProducts = activeFilters.reduce(
-        (acc, filterCB) => acc.filter((product) => filterCB(product)),
-        this.state.products
-      );
-    } else filteredProducts = this.state.products;
+    const filteredProducts = activeFilters.reduce(
+      (acc, filterCB) => acc.filter((product) => filterCB(product)),
+      this.state.products
+    );
 
     return (
       <Fragment>
