@@ -76,6 +76,8 @@ export class FilterableTable extends React.Component {
       this.state.products
     );
 
+    console.log(this.stateProxy);
+
     return (
       <Fragment>
         <Filters
