@@ -48,14 +48,11 @@
 [0608/172830.060:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0608/173330.068:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0608/173401.202:ERROR:crash_report_database_win.cc(469)] failed to stat report
-<<<<<<< HEAD
-=======
 [0608/174256.487:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0608/175256.488:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0608/175256.488:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0608/180451.271:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0608/180715.214:ERROR:crash_report_database_win.cc(469)] failed to stat report
->>>>>>> refactor
 [0616/143540.094:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0616/144540.094:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0616/144540.095:ERROR:crash_report_database_win.cc(469)] failed to stat report
