@@ -1,8 +1,8 @@
 import { ProductTable } from "./ProductTable";
 import { Filters } from "./Filters";
 import React, { Fragment } from "react";
-import * as API from "../../API";
-import { removeChar } from "../../utils";
+import * as api from "api";
+import { getStateProxy, removeChar } from "utils";
 export class FilterableTable extends React.Component {
   state = {
     searchItem: "",
@@ -10,6 +10,8 @@ export class FilterableTable extends React.Component {
     inStockOnly: false,
     products: [],
   };
+
+  stateProxy = getStateProxy(this);
 
   filterCBS = {
     inStockOnly: (product) => {
@@ -55,7 +57,7 @@ export class FilterableTable extends React.Component {
 
   async componentDidMount() {
     try {
-      this.setState({ products: await API.get() });
+      this.setState({ products: await api.get() });
     } catch (error) {
       console.error(error);
     }
